@@ -6,7 +6,15 @@ box-sizing: border-box;
 
 body{
     font-family: sans-serif;
-    /* height: 100vh; */
+    background-color: black;
+    color: white;
+}
+
+img{
+    /* display: block; */
+    /* object-fit: cover; */
+    height: auto;
+    width: 100%;
 }
 
 .flex{
@@ -24,9 +32,17 @@ body{
 
 #main-photo{
     height: calc(100vh - 180px);
-    background-image: url("/assets/img/blade-runner-2049.webp");
+    /* background-image: url("/assets/img/blade-runner-2049.webp"); */
     background-position: top;
     background-size: cover;
+}
+
+.main-active{
+    display: block;
+}
+
+.hidden{
+    display: none;
 }
 
 #carousel{
@@ -36,9 +52,17 @@ body{
 .container-image{
     width: calc(100% / 5);
     height: 180px;
-    background-image: url("/assets/img/james-bond-spectre.webp");
+    opacity: 0.5;
     background-position: center;
     background-size: cover;
+}
+
+.container-image:hover{
+    opacity: 1;
+}
+
+.active{
+    opacity: 1;
 }
 
 .chevron{
