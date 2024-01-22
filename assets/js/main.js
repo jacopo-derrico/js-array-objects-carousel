@@ -56,7 +56,7 @@ let currentFilm = 0;
 
 for (let i = 0; i < filmArray.length; i++) {
     const film = filmArray[i];
-    
+
     let thumbnail = document.createElement('figure');
     thumbnail.classList.add('container-image')
     thumbnail.style.backgroundImage = `url(./assets/img/${film.url})`
@@ -76,61 +76,35 @@ for (let i = 0; i < filmArray.length; i++) {
         title.classList.remove('hidden');
         description.classList.remove('hidden');
         mainPhoto.style.backgroundImage = `url(./assets/img/${film.url})`
-    }
+    } 
 }
 
+// Arrows event listeners
+rightArrow.addEventListener('click', function() {
+    currentFilm = (currentFilm + 1) % filmArray.length;
+    updateCarousel();
+})
 
-// for (let i = 0; i < filmArray.length; i++) {
-//     const film = filmArray[i];
+leftArrow.addEventListener('click', function() {
+    currentFilm = (currentFilm - 1 + filmArray.length) % filmArray.length;
+    updateCarousel();
+})
 
-//     // let imgFigure = document.createElement('figure')
+function updateCarousel() {
+    let titles = mainPhoto.querySelectorAll('h3');
+    let descriptions = mainPhoto.querySelectorAll('p');
+    let thumbnails = carousel.querySelectorAll('figure');
 
-//     // imgFigure.classList.add('container-image')
+    // Hide all titles, descriptions, and thumbnails
+    titles.forEach(title => title.classList.add('hidden'));
+    descriptions.forEach(description => description.classList.add('hidden'));
+    thumbnails.forEach(thumbnail => thumbnail.classList.remove('active'));
 
-//     // imgFigure.style.backgroundImage = `url(./assets/img/${film.url})`
+    // Show the current title, description, and thumbnail
+    titles[currentFilm].classList.remove('hidden');
+    descriptions[currentFilm].classList.remove('hidden');
+    thumbnails[currentFilm].classList.add('active');
 
-//     // carousel.append(imgFigure)
-
-//     let thumbnail = document.createElement('img');
-
-//     thumbnail.src = `./assets/img/${film.url}`;
-
-//     thumbnail.addEventListener('click', () => {
-//         currentFilm = i;
-//         updateActiveImage();
-//     });
-//     carousel.appendChild(thumbnail);
-
-//     // Create figure for main photo
-//     let figure = document.createElement('figure');
-//     figure.style.backgroundImage = `url(./assets/img/${film.url})`;
-//     if (i === 0) {
-//         figure.classList.add('active');
-//     }
-//     mainPhoto.appendChild(figure);
-
-//     // for (let i = 0; i < filmArray.length; i++) {
-//     //     // let mainFigure = document.createElement(`<img src="./assets/img/${film.url}">`)
-//     //     film
-
-//     //     if (i === 0) {
-//     //         mainPhoto.innerHTML += `<figure class="active">
-//     //         <img src="./assets/img/${film.url}">
-//     //         </figure>`
-//     //         mainFigure.classList.add('active')
-//     //     } else {
-
-//     //     }
-//     // }
-// }
-
-
-
-
-// // rightArrow.addEventListener('click', function () {
-// //     if (currentFilm == filmArray.length - 1) {
-// //         currentFilm = 0
-// //     } else {
-// //         currentFilm++
-// //     }
-// // })
+    // Update the main photo
+    mainPhoto.style.backgroundImage = `url(./assets/img/${filmArray[currentFilm].url})`;
+}
