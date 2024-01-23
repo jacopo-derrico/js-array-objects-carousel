@@ -54,6 +54,8 @@ const rightArrow = document.getElementById('chevron-right');
 
 let currentFilm = 0;
 
+
+
 for (let i = 0; i < filmArray.length; i++) {
     const film = filmArray[i];
 
@@ -108,3 +110,13 @@ function updateCarousel() {
     // Update the main photo
     mainPhoto.style.backgroundImage = `url(./assets/img/${filmArray[currentFilm].url})`;
 }
+
+let thumbFigure = document.querySelectorAll('.container-image');
+
+thumbFigure.forEach((thumbnail, index) => {
+    thumbnail.addEventListener('click', function() {
+    
+        currentFilm = index;
+        updateCarousel();
+    })
+});
